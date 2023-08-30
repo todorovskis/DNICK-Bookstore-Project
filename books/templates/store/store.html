@@ -1,0 +1,24 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+    <div>
+        <a class="btn btn-success" href="/add">Add book</a>
+    </div>
+    <div class="all-books" id="books">
+        <div class="row">
+            {% for book in books %}
+                <div class="card card-override" style="width: 15rem;">
+                    <img class="card-img-top" src="{{ book.image_url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <button data-product="{{ book.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+                        <a class="btn btn-outline-success" style="float: right" href="/{{ book.id }}">View</a>
+                        <h6 style="display: inline-block; float: right"><strong>${{ book.price|floatformat:2 }}</strong>
+                        </h6>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock content %}

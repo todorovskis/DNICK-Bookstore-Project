@@ -1,0 +1,28 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+    <h1>Book Form</h1>
+    <form method="POST" action="/add">
+        {% csrf_token %}
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title"><br>
+
+        <label for="author">Author:</label>
+        <select id="author" name="author">
+            <option value="none">None</option>
+            {% for author in authors %}
+                <option value="{{ author.id }}">{{ author.name }}</option>
+            {% endfor %}
+        </select>
+
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea><br>
+
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price"><br>
+        <button type="submit">Save Changes</button>
+    </form>
+
+{% endblock %}
